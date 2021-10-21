@@ -37,6 +37,4 @@ module.exports = [
         img: 'https://i.imgur.com/uSUY2O8.jpeg'
     },
 
-
-
 ]

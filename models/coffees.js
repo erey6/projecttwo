@@ -16,5 +16,5 @@ const coffeeSchema = new Schema({
 });
 
 
-const Coffee = mongoose.model('Coffee', productSchema);
+const Coffee = mongoose.model('Coffee', coffeeSchema);
 module.exports = Coffee;

@@ -1,9 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include ('../partials/head.ejs') %>
+<%- include ('../partials/head.ejs') %>
 
-<body> <%- include ('../partials/nav.ejs') %>
-    
-    <h1>Bean Base</h1>
-</body>
+    <body>
+        <div class="container">
+            <%- include ('../partials/nav.ejs') %>
+                <div class="row">
+                    <%JSON.stringify(coffees[0]) %>
+                        <div class="featured eight columns">
+                            <h3>Featured Coffee <span>
+                                    <%= coffees[0].name %>
+                                </span> </h3>
+                            <img src=" <%=coffees[1].img %>" alt="" />
+                            <h5>
+                                <%= coffees[0].roaster %>
+                            </h5>
+                            <p>
+                                <% for( let index=0; index < coffees[0].price; index++ ) { %>
+                                    $
+                                    <% } %>
+                            </p>
+                            <p>
+                                <%= coffees[0].grade %>
+                            </p>
+                            <ul>
+                                <% coffees[0].tags.forEach(tag=> { %>
+                                    <li>
+                                        <%= tag %>
+                                    </li>
+                                    <% }) %>
+                            </ul>
+                        </div>
+                        <div class="sider four columns">
+
+                            <h4>More coffees</h4>
+                            <div class="small-card">
+                                <% for( let index=1; index <4 ; index++ ) { %>
+                                    <img src="<%= coffees[index].img %> " alt="">
+                                    <h5>
+                                        <%= coffees[index].name %>
+                                    </h5>
+                                    <p>
+                                        <%= coffees[index].grade %>
+                                    </p>
+                                    <% } %>
+                            </div>
+                        </div>
+                </div>
+        </div>
+    </body>
+
 </html>
