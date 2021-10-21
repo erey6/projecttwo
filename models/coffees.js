@@ -8,9 +8,11 @@ const coffeeSchema = new Schema({
     tags: [String],
     description: String,
     home: Boolean,
+    address: String,
     favorite: Boolean,
     price: { type: Number, min: 1, max: 4 },
     grade: { type: Number, min: 0, max: 13 },
+    img: String,
 });
 
 
