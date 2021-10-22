@@ -40,7 +40,6 @@ nav ul {
     max-height: 99px;
 }
 
-
 .card {
     border: 1px solid red;
     margin-bottom: 1em;
@@ -51,4 +50,9 @@ nav ul {
 
 .show img {
     width: 90%
+}
+
+textarea#description {
+    height: 120px;
+    resize: none;
 }

@@ -7,51 +7,71 @@
             <%- include ('../partials/nav.ejs') %>
                 <h3> Edit entry </h3>
 
-        <form action="./coffees/<%= coffee.id %>?_method=PUT " method="post">
-            <div class="row">
-                <div class="columns six">
-                    <label for="roaster">Roaster</label>
-                    <input class="u-full-width" type="text" name="roaster" id="">
-                </div>
-                <div class="columns six"> <label for="name">Name</label>
-                    <input class="u-full-width" type="text" name="name" id="">
-                </div>
-            </div>
-            <label for="description">Description</label>
-            <textarea type="text" name="description" id=""></textarea>
-            <label for="price">Price</label>
-            <select name="price" id="">
-                <option value="1">$</option>s
-                <option value="2">$$</option>
-                <option value="3">$$$</option>
-                <option value="4">$$$$</option>
-            </select>
-            <label for="grade">Grade</label>
-            <select name="grade">
-                <option value="0"></option>
-                <option value="13">A+</option>
-                <option value="12">A</option>
-                <option value="11">A-</option>
-                <option value="10">B+</option>
-                <option value="9">B</option>
-                <option value="8">B-</option>
-                <option value="7">C+</option>
-                <option value="6">C</option>
-                <option value="5">C-</option>
-                <option value="4">D+</option>
-                <option value="3">D</option>
-                <option value="2">D-</option>
-                <option value="1">F</option>
-            </select>
-            <p>Where was it brewed?</p>
-            <input type="radio" id="home" name="home" value="home">
-<label for="child">At home</label>
-<input type="radio" id="cafe" name="home" value="cafe">
-<label for="cafe">Cafe</label><br>
-            
+                <form action="./coffees/<%= coffee.id %>?_method=PUT " method="post">
+                    <div class="row">
+                        <div class="columns six">
+                            <label for="roaster">Roaster</label>
+                            <input class="u-full-width" type="text" name="roaster" id="">
+                        </div>
+                        <div class="columns six"> <label for="name">Name</label>
+                            <input class="u-full-width" type="text" name="name" id="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="columns six">
+                            <label for="description">Description</label>
+                            <textarea class="u-full-width" type="text" name="description" id="description"></textarea>
+                        </div>
+                        <div class="columns six">
+                            <label for="tags">Tags (separate by commas)</label>
+                            <input class="u-full-width" type="text" name="tags" id="">
+                            <label for="img">Image link</label>
+                            <input class="u-full-width" type="text" name="img" id="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="columns three">
+                            <label for="price">Price</label>
+                            <select name="price" id="">
+                                <option value="1">$</option>s
+                                <option value="2">$$</option>
+                                <option value="3">$$$</option>
+                                <option value="4">$$$$</option>
+                            </select>
+                        </div>
+                        <div class="columns three">
+                            <label for="grade">Grade</label>
+                            <select name="grade">
+                                <option value="0"></option>
+                                <option value="13">A+</option>
+                                <option value="12">A</option>
+                                <option value="11">A-</option>
+                                <option value="10">B+</option>
+                                <option value="9">B</option>
+                                <option value="8">B-</option>
+                                <option value="7">C+</option>
+                                <option value="6">C</option>
+                                <option value="5">C-</option>
+                                <option value="4">D+</option>
+                                <option value="3">D</option>
+                                <option value="2">D-</option>
+                                <option value="1">F</option>
+                            </select>
+                        </div>
+                        <div class="columns six">
+                            <label for="">Where was it brewed?</label>
+                            <label for="home">
+                                <input type="radio" id="home" name="home" value="home">
+                                <span>At home</span>
+                            </label>
+                            <label for="cafe">
+                                <input type="radio" id="cafe" name="home" value="cafe">
+                                <span>Cafe</span>
+                            </label>
+                        </div>
+                    </div>
 
-
-        </form>
+                </form>
         </div>
     </body>
 
