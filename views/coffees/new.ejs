@@ -5,7 +5,7 @@
     <body>
         <div class="container">
             <%- include ('../partials/nav.ejs') %>
-                <h3> Edit entry </h3>
+                <h3>Add a coffee</h3>
 
                 <form action="" method="POST">
                     <div class="row">
@@ -26,19 +26,19 @@
                             <label for="tags">Tags (separate by commas)</label>
                             <input class="u-full-width" type="text" name="tags" id="">
                             <label for="img">Image link</label>
-                            <input class="u-full-width" type="text" name="img" id=">
+                            <input class="u-full-width" type="text" name="img" id="">
                         </div>
                     </div>
-                    <div class=" row">
+                    <div class="row">
                             <div class="columns four">
                                 <label for="">Where was it brewed?</label>
                                 <label for="home">
-                                    <input type="radio" id="home" name="home" value="home" checke%>
-                                    <span>At home</span>
+                                    <input type="radio" id="home" name="home" value="home" checked>
+                                    <span class="label-body">At home</span>
                                 </label>
                                 <label for="cafe">
                                     <input type="radio" id="cafe" name="home" value="cafe">
-                                    <span>Cafe</span>
+                                    <span class="label-body">Cafe</span>
                                 </label>
                                 <label for="address">Cafe address</label>
                                 <input type="text" name="address" id="" />
@@ -52,15 +52,15 @@
                                     <option value="4">$$$$</option>
                                 </select>
                             </div>
-                            <div class="columns four">
+                            <div class="columns two">
                                 <label for="">Ground or whole bean?</label>
                                 <label for="wholeBean">
                                     <input type="radio" id="wholeBean" name="wholeBean" value="wholeBean" checked>
-                                    <span>Whole bean</span>
+                                    <span class="label-body">Whole bean</span>
                                 </label>
                                 <label for="ground">
                                     <input type="radio" id="ground" name="wholeBean" value="ground">
-                                    <span>ground</span>
+                                    <span class="label-body"> ground</span>
                                 </label>
 
                             </div>
@@ -83,7 +83,13 @@
                                     <option value="1">F</option>
                                 </select>
                             </div>
+                            <div class="columns two">
 
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="label-body">Favorite</span>
+                                  </label>
+                               </div>
                         </div>
                         <div class="row">
                             <input class="submit columns six" type="submit" value="submit edit(s)">

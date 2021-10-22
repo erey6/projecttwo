@@ -26,6 +26,11 @@ coffees.get('/', (req, res) => {
 
 })
 
+//NEW
+coffees.get('/new', (req, res) => {
+    res.render('coffees/new.ejs')
+})
+
 //SHOW
 coffees.get('/:id', (req, res) => {
     Coffee.find({}, (err1, allCoffees) => {
@@ -51,9 +56,11 @@ coffees.get('/:id/edit', (req, res) => {
 
 //UPDATE
 coffees.put('/:id', (req, res) => {
-    //assigns true or false for the two radio button params
+    console.log(req.body);
+    //assigns true or false for the two radio button params and checkbox
     (req.body.home==='home') ? req.body.home = true : req.body.home = false;
     (req.body.wholeBean==='wholeBean') ? req.body.wholeBean = true : req.body.wholeBean = false;
+    (req.body.favorite==='on') ? req.body.favorite = true : req.body.favorite = false;
     //parse strings to nums for price, grade
     req.body.price = parseInt(req.body.price)
     req.body.grade = parseInt(req.body.grade)
@@ -63,6 +70,7 @@ coffees.put('/:id', (req, res) => {
         res.redirect('/coffees')
     })
 })  
+
 
 
 

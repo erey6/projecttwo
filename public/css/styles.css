@@ -7,10 +7,10 @@ box-sizing: border-box;
 body {
 font-family: 'Source Sans Pro', sans-serif;
 
-/* margin: 0 auto; */
-background-color: #f3efef;
-border: .5px solid yellow;
+
 }
+
+
 
 nav {
     margin-top: 18px;
@@ -61,4 +61,8 @@ textarea#description {
 input.submit {
     color: #ffffff;
     background-color: #000000;
+}
+
+input.submit:hover{
+    color: #f3efef;
 }

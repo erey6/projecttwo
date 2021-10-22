@@ -36,12 +36,12 @@
                             <label for="home">
                                 <input type="radio" id="home" name="home" value="home" <%if (coffee.home===true) {%>
                                 checked <%} %> >
-                                    <span>At home</span>
+                                    <span class="label-body">At home</span>
                             </label>
                             <label for="cafe">
                                 <input type="radio" id="cafe" name="home" value="cafe" <%if (coffee.home===false) {%>
                                 checked <%} %>>
-                                    <span>Cafe</span>
+                                    <span class="label-body">Cafe</span>
                             </label>
                             <label for="address">Cafe address</label>
                             <input type="text" name="address" id="" value="<%= coffee.address %>">
@@ -55,19 +55,20 @@
                                 <option value="4" <%if (coffee.price===4) {%> selected <% } %> >$$$$</option>
                             </select>
                         </div>
-                        <div class="columns four">
+                        <div class="columns two">
                             <label for="">Ground or whole bean?</label>
                             <label for="wholeBean">
-                                <input type="radio" id="wholeBean" name="wholeBean" value="wholeBean" <%if (coffee.wholeBean===true) {%>
+                                <input type="radio" id="wholeBean" name="wholeBean" value="wholeBean" <%if
+                                    (coffee.wholeBean===true) {%>
                                 checked <%} %> >
-                                    <span>Whole bean</span>
+                                    <span class="label-body">Whole bean</span>
                             </label>
                             <label for="ground">
-                                <input type="radio" id="ground" name="wholeBean" value="ground" <%if (coffee.home===false) {%>
+                                <input type="radio" id="ground" name="wholeBean" value="ground" <%if
+                                    (coffee.home===false) {%>
                                 checked <%} %>>
-                                    <span>ground</span>
+                                    <span class="label-body">ground</span>
                             </label>
-                            
                         </div>
                         <div class="columns two">
                             <label for="grade">Grade</label>
@@ -88,7 +89,14 @@
                                 <option value="1" <%if (coffee.grade===1) {%> selected <% } %> >F</option>
                             </select>
                         </div>
-                       
+                        <div class="columns two">
+
+                            <label>
+                                <input type="checkbox" name="favorite"  <% if (coffee.favorite===true){%> checked <% } %>>
+                                <span class="label-body"
+                                        >Favorite</span>
+                            </label>
+                        </div>
                     </div>
                     <div class="row">
                         <input class="submit columns six" type="submit" value="submit edit(s)">

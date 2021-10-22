@@ -9,7 +9,10 @@
                     <%JSON.stringify(coffee) %>
                         <div class="show eight columns">
                             <h3>
-                                <%= coffee.name %>
+                                <%= coffee.name %> 
+                                <% if (coffee.favorite) { %>
+                                    A favorite
+                                   <% } %>
                             </h3>
                             <img src=" <%=coffee.img %>" alt="" />
                             <h5>
@@ -24,6 +27,7 @@
                             <p>
                                 <%= coffee.bean %>
                             </p>
+                           
                             <p>Tried at <%= coffee.where%><% if (coffee.address) 
                             { %>: <%=coffee.address%>
                              <%}%>
