@@ -1,9 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include ('../partials/head.ejs') %>
+<%- include ('../partials/head.ejs') %>
 
-<body> <%- include ('../partials/nav.ejs') %>
-    
-    <h1>Bean Base</h1>
-</body>
+    <body>
+        <div class="container">
+            <%- include ('../partials/nav.ejs') %>
+                <div class="section">
+                    <% let count=0 %>
+                        <% coffees.forEach(coffee=> { %>
+                            <% count++ %>
+                                <% if ((count-1)%4===0 || count===1) { %>
+                                    <div class="row">
+                                        <% } %>
+                                            <div class="card three columns">
+                                                <img src="<%= coffee.img %>" alt="">
+                                                <h5>
+                                                    <%= coffee.name %>
+                                                </h5>
+                                                <p>Price:
+                                                    <% for( let index=0; index < coffee.price; index++ ) { %>$<% } %>
+                                                </p>
+                                                <p> Grade: <%= coffee.grade %>
+                                                </p>
+                                                <a href="/coffees/<%= coffee.id %> ">More</a>
+                                            </div>
+
+                                            <% if (count%4===0 || count === coffees.length) { %>
+                                    </div>
+                                    <% } %>
+                             <% }) %>
+                </div>
+        </div>
+    </body>
+
 </html>

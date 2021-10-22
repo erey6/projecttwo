@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include ('../partials/head.ejs') %>
+
+    <body>
+        <div class="container">
+            <%- include ('../partials/nav.ejs') %>
+                <div class="row">
+                    <%JSON.stringify(coffee) %>
+                        <div class= "show eight columns">
+                            <h3><%= coffee.name %></h3>
+                            <img src=" <%=coffee.img %>" alt="" />
+                            <h5>
+                                <%= coffee.roaster %>
+                            </h5>
+                            <p>
+                                <% for( let index=0; index < coffee.price; index++ ) { 
+                                    %>$<% } %>
+                            </p>
+                            <p>
+                                <%= coffee.grade %>
+                            </p>
+                            <p><%= coffee.bean %> </p>
+                            <p>Tried at <%= coffee.where%></p>
+                            <ul>
+                                <% coffee.tags.forEach(tag=> { %>
+                                    <li>
+                                        <%= tag %>
+                                    </li>
+                                    <% }) %>
+                            </ul>
+                            <p class="description"><%= coffee.description %></p>
+                            <p><a href="/coffees/<%= coffee.id %>/edit">Edit</a></p>
+                            <p><a href="/coffees/">Back to full list</a></p>
+                        </div>
+                        <div class="sider four columns">
+                            
+                            <h4>Others from <%=coffee.roaster%> </h4>
+                            
+                            <%=JSON.stringify(coffees) %>
+                        </div>
+                </div>
+        </div>
+    </body>
+
+</html>

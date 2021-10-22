@@ -7,7 +7,7 @@ box-sizing: border-box;
 body {
 font-family: 'Source Sans Pro', sans-serif;
 
-margin: 0 auto;
+/* margin: 0 auto; */
 background-color: #f3efef;
 border: .5px solid yellow;
 }
@@ -38,4 +38,17 @@ nav ul {
 .sider img {
    max-width: 100% ;
     max-height: 99px;
+}
+
+
+.card {
+    border: 1px solid red;
+    margin-bottom: 1em;
+}
+.card img {
+    width: 100%;
+}
+
+.show img {
+    width: 90%
 }
