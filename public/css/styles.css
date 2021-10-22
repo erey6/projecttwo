@@ -55,4 +55,10 @@ nav ul {
 textarea#description {
     height: 120px;
     resize: none;
+    font-family: sans-serif;
+}
+
+input.submit {
+    color: #ffffff;
+    background-color: #000000;
 }

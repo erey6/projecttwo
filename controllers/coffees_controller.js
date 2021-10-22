@@ -1,6 +1,7 @@
 const express = require('express')
 const coffees = express.Router()
 
+
 //Schema
 const Coffee = require('../models/coffees.js')
 const coffeeSeed = require('../models/coffeeSeed.js')
