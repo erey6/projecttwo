@@ -7,7 +7,7 @@
             <%- include ('../partials/nav.ejs') %>
                 <h3> Edit entry </h3>
 
-                <form action="./coffees/<%= coffee.id %>?_method=PUT " method="post">
+                <form action="/coffees/<%= coffee.id %>?_method=PUT" method="POST">
                     <div class="row">
                         <div class="columns six">
                             <label for="roaster">Roaster</label>

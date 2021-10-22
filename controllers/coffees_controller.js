@@ -49,7 +49,18 @@ coffees.get('/:id/edit', (req, res) => {
     })
 })
 
-
+//UPDATE
+coffees.put('/:id', (req, res) => {
+    //assigns true or false for the home parameter
+    (req.body.home==='home') ? req.body.home = true : req.body.home = false;
+    //turns String of tags into array
+    req.body.tags = req.body.tags.split(',')
+    res.send(req.body)
+    // Coffee.findByIdAndUPdate(req.params.id, req.body, (err, updated) => {
+    //     console.log.updated()
+    //     res.redirect('/coffees')
+    // })
+})  
 
 
 
