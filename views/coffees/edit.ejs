@@ -20,7 +20,8 @@
                     <div class="row">
                         <div class="columns six">
                             <label for="description">Description</label>
-                            <textarea class="u-full-width" type="text" name="description" id="description"><%= coffee.description %></textarea>
+                            <textarea class="u-full-width" type="text" name="description"
+                                id="description"><%= coffee.description %></textarea>
                         </div>
                         <div class="columns six">
                             <label for="tags">Tags (separate by commas)</label>
@@ -30,49 +31,68 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="columns three">
-                            <label for="price">Price</label>
-                            <select name="price" id="">
-                                <option value="1" <%if (coffee.value===1) {%> selected <% } %>  >$</option>s
-                                <option value="2" <%if (coffee.value===2) {%> selected <% } %> >$$</option>
-                                <option value="3" <%if (coffee.value===3) {%> selected <% } %> >$$$</option>
-                                <option value="4" <%if (coffee.value===4) {%> selected <% } %> >$$$$</option>
-                            </select>
-                        </div>
-                        <div class="columns three">
-                            <label for="grade">Grade</label>
-                            <select name="grade">
-                                <option value="0"  <%if (coffee.grade===0) {%> selected <% } %> ></option>
-                                <option value="13"  <%if (coffee.grade===13) {%> selected <% } %> >A+</option>
-                                <option value="12"  <%if (coffee.grade===12) {%> selected <% } %> >A</option>
-                                <option value="11"  <%if (coffee.grade===11) {%> selected <% } %> >A-</option>
-                                <option value="10"  <%if (coffee.grade===10) {%> selected <% } %> >B+</option>
-                                <option value="9"  <%if (coffee.grade===9) {%> selected <% } %> >B</option>
-                                <option value="8"  <%if (coffee.grade===8) {%> selected <% } %> >B-</option>
-                                <option value="7"  <%if (coffee.grade===7) {%> selected <% } %> >C+</option>
-                                <option value="6"  <%if (coffee.grade===6) {%> selected <% } %> >C</option>
-                                <option value="5"  <%if (coffee.grade===5) {%> selected <% } %> >C-</option>
-                                <option value="4"  <%if (coffee.grade===4) {%> selected <% } %> >D+</option>
-                                <option value="3"  <%if (coffee.grade===3) {%> selected <% } %> >D</option>
-                                <option value="2"  <%if (coffee.grade===2) {%> selected <% } %> >D-</option>
-                                <option value="1"  <%if (coffee.grade===1) {%> selected <% } %> >F</option>
-                            </select>
-                        </div>
-                        <div class="columns six">
+                        <div class="columns four">
                             <label for="">Where was it brewed?</label>
                             <label for="home">
-                                <input type="radio" id="home" name="home" value="home" <%if (coffee.home===true) {%> checked <%} %>  >
-                                <span>At home</span>
+                                <input type="radio" id="home" name="home" value="home" <%if (coffee.home===true) {%>
+                                checked <%} %> >
+                                    <span>At home</span>
                             </label>
                             <label for="cafe">
-                                <input type="radio" id="cafe" name="home" value="cafe" <%if (coffee.home===false) {%> checked <%} %>>
-                                <span>Cafe</span>
+                                <input type="radio" id="cafe" name="home" value="cafe" <%if (coffee.home===false) {%>
+                                checked <%} %>>
+                                    <span>Cafe</span>
                             </label>
+                            <label for="address">Cafe address</label>
+                            <input type="text" name="address" id="" value="<%= coffee.address %>">
                         </div>
+                        <div class="columns two">
+                            <label for="price">Price</label>
+                            <select name="price" id="">
+                                <option value="1" <%if (coffee.price===1) {%> selected <% } %> >$</option>s
+                                <option value="2" <%if (coffee.price===2) {%> selected <% } %> >$$</option>
+                                <option value="3" <%if (coffee.price===3) {%> selected <% } %> >$$$</option>
+                                <option value="4" <%if (coffee.price===4) {%> selected <% } %> >$$$$</option>
+                            </select>
+                        </div>
+                        <div class="columns four">
+                            <label for="">Ground or whole bean?</label>
+                            <label for="wholeBean">
+                                <input type="radio" id="wholeBean" name="wholeBean" value="wholeBean" <%if (coffee.wholeBean===true) {%>
+                                checked <%} %> >
+                                    <span>Whole bean</span>
+                            </label>
+                            <label for="ground">
+                                <input type="radio" id="ground" name="wholeBean" value="ground" <%if (coffee.home===false) {%>
+                                checked <%} %>>
+                                    <span>ground</span>
+                            </label>
+                            
+                        </div>
+                        <div class="columns two">
+                            <label for="grade">Grade</label>
+                            <select name="grade">
+                                <option value="0" <%if (coffee.grade===0) {%> selected <% } %> ></option>
+                                <option value="13" <%if (coffee.grade===13) {%> selected <% } %> >A+</option>
+                                <option value="12" <%if (coffee.grade===12) {%> selected <% } %> >A</option>
+                                <option value="11" <%if (coffee.grade===11) {%> selected <% } %> >A-</option>
+                                <option value="10" <%if (coffee.grade===10) {%> selected <% } %> >B+</option>
+                                <option value="9" <%if (coffee.grade===9) {%> selected <% } %> >B</option>
+                                <option value="8" <%if (coffee.grade===8) {%> selected <% } %> >B-</option>
+                                <option value="7" <%if (coffee.grade===7) {%> selected <% } %> >C+</option>
+                                <option value="6" <%if (coffee.grade===6) {%> selected <% } %> >C</option>
+                                <option value="5" <%if (coffee.grade===5) {%> selected <% } %> >C-</option>
+                                <option value="4" <%if (coffee.grade===4) {%> selected <% } %> >D+</option>
+                                <option value="3" <%if (coffee.grade===3) {%> selected <% } %> >D</option>
+                                <option value="2" <%if (coffee.grade===2) {%> selected <% } %> >D-</option>
+                                <option value="1" <%if (coffee.grade===1) {%> selected <% } %> >F</option>
+                            </select>
+                        </div>
+                       
                     </div>
                     <div class="row">
-                    <input class="submit columns six" type="submit" value="submit edit(s)">
-                </div>
+                        <input class="submit columns six" type="submit" value="submit edit(s)">
+                    </div>
                 </form>
         </div>
     </body>

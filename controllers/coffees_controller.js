@@ -51,15 +51,17 @@ coffees.get('/:id/edit', (req, res) => {
 
 //UPDATE
 coffees.put('/:id', (req, res) => {
-    //assigns true or false for the home parameter
+    //assigns true or false for the two radio button params
     (req.body.home==='home') ? req.body.home = true : req.body.home = false;
+    (req.body.wholeBean==='wholeBean') ? req.body.wholeBean = true : req.body.wholeBean = false;
+    //parse strings to nums for price, grade
+    req.body.price = parseInt(req.body.price)
+    req.body.grade = parseInt(req.body.grade)
     //turns String of tags into array
     req.body.tags = req.body.tags.split(',')
-    res.send(req.body)
-    // Coffee.findByIdAndUPdate(req.params.id, req.body, (err, updated) => {
-    //     console.log.updated()
-    //     res.redirect('/coffees')
-    // })
+    Coffee.findByIdAndUpdate(req.params.id, req.body, (err, updated) => {
+        res.redirect('/coffees')
+    })
 })  
 
 
