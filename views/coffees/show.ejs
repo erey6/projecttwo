@@ -6,52 +6,53 @@
         <div class="container">
             <%- include ('../partials/nav.ejs') %>
                 <div class="row">
-                    <%JSON.stringify(coffee) %>
-                        <div class="show eight columns">
+                    <div class="show five columns">
+
+                        <img src=" <%=coffee.img %>" alt="" />
+
+
+                    </div>
+                    <div class="seven columns">
+                        <div class="twelve columns">
                             <h3>
-                                <%= coffee.name %> 
-                                <% if (coffee.favorite) { %>
-                                    A favorite
-                                   <% } %>
+                                <%= coffee.name %>
+                                    <% if (coffee.favorite) { %>
+                                        A favorite
+                                        <% } %>
                             </h3>
-                            <img src=" <%=coffee.img %>" alt="" />
-                            <h5>
-                                <%= coffee.roaster %>
-                            </h5>
-                            <p>
-                                <% for( let index=0; index < coffee.price; index++ ) { %>$<% } %>
-                            </p>
-                            <p>
-                                <%= coffee.grade %>
-                            </p>
-                            <p>
-                                <%= coffee.bean %>
-                            </p>
-                           
-                            <p>Tried at <%= coffee.where%><% if (coffee.address) 
-                            { %>: <%=coffee.address%>
-                             <%}%>
-                            </p>
-                                    <ul>
-                                        <% coffee.tags.forEach(tag=> { %>
-                                            <li>
-                                                <%= tag %>
-                                            </li>
-                                            <% }) %>
-                                    </ul>
-                                    <p class="description">
-                                        <%= coffee.description %>
-                                    </p>
-                                    <p><a href="/coffees/<%= coffee.id %>/edit">Edit</a></p>
-                                    <p><a href="/coffees/">Back to full list</a></p>
                         </div>
-                        <div class="sider four columns">
-
-                            <h4>Others from <%=coffee.roaster%>
-                            </h4>
-
-                            <%=JSON.stringify(coffees) %>
+                        <h5>
+                            <%= coffee.roaster %>
+                        </h5>
+                        <p>
+                            Price: <% for( let index=0; index < coffee.price; index++ ) { %>$<% } %>
+                        </p>
+                        <p>
+                            Grade: <%= coffee.grade %>
+                        </p>
+                        <div class="beans">
+                            <img src="/images/coffee-bean.png" alt="">
+                            <img src="/images/coffee-bag-bw.png" alt="">
                         </div>
+                        <p>Tried at <%= coffee.where%>
+                                <% if (coffee.address) { %>: <%=coffee.address%>
+                                        <%}%>
+                        </p>
+                        <ul>
+                            <% coffee.tags.forEach(tag=> { %>
+                                <li>
+                                    <%= tag %>
+                                </li>
+                                <% }) %>
+                        </ul>
+                        <p class="description">
+                            <%= coffee.description %>
+                        </p>
+                        <p><a href="/coffees/<%= coffee.id %>/edit">Edit</a></p>
+                        <form class="submit" action="">
+                            <input type="submit" value="DELETE">
+                        </form>
+                    </div>
                 </div>
         </div>
     </body>

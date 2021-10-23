@@ -56,11 +56,10 @@ coffees.get('/:id/edit', (req, res) => {
 
 //UPDATE
 coffees.put('/:id', (req, res) => {
-    console.log(req.body);
     //assigns true or false for the two radio button params and checkbox
-    (req.body.home==='home') ? req.body.home = true : req.body.home = false;
-    (req.body.wholeBean==='wholeBean') ? req.body.wholeBean = true : req.body.wholeBean = false;
-    (req.body.favorite==='on') ? req.body.favorite = true : req.body.favorite = false;
+    (req.body.home === 'home') ? req.body.home = true : req.body.home = false;
+    (req.body.wholeBean === 'wholeBean') ? req.body.wholeBean = true : req.body.wholeBean = false;
+    (req.body.favorite === 'on') ? req.body.favorite = true : req.body.favorite = false;
     //parse strings to nums for price, grade
     req.body.price = parseInt(req.body.price)
     req.body.grade = parseInt(req.body.grade)
@@ -69,7 +68,27 @@ coffees.put('/:id', (req, res) => {
     Coffee.findByIdAndUpdate(req.params.id, req.body, (err, updated) => {
         res.redirect('/coffees')
     })
-})  
+})
+
+//CREATE
+coffees.post('/', (req, res) => {
+    //assigns true or false for the two radio button params and checkbox
+    (req.body.home === 'home') ? req.body.home = true : req.body.home = false;
+    (req.body.wholeBean === 'wholeBean') ? req.body.wholeBean = true : req.body.wholeBean = false;
+    (req.body.favorite === 'on') ? req.body.favorite = true : req.body.favorite = false;
+    //parse strings to nums for price, grade
+    req.body.price = parseInt(req.body.price)
+    req.body.grade = parseInt(req.body.grade)
+    //turns String of tags into array
+    req.body.tags = req.body.tags.split(',')
+    Coffee.create(req.body, (err, addedCoffee) => {
+        if (err) {
+            res.send(error);
+        } else {
+        res.redirect('/coffees')
+        }
+    })
+})
 
 
 

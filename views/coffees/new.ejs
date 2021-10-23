@@ -7,7 +7,7 @@
             <%- include ('../partials/nav.ejs') %>
                 <h3>Add a coffee</h3>
 
-                <form action="" method="POST">
+                <form action="/coffees" method="POST">
                     <div class="row">
                         <div class="columns six">
                             <label for="roaster">Roaster</label>
@@ -86,13 +86,13 @@
                             <div class="columns two">
 
                                 <label>
-                                    <input type="checkbox">
+                                    <input type="checkbox" name="favorite">
                                     <span class="label-body">Favorite</span>
                                   </label>
                                </div>
                         </div>
                         <div class="row">
-                            <input class="submit columns six" type="submit" value="submit edit(s)">
+                            <input class="submit columns six" type="submit" value="Add Coffee">
                         </div>
                 </form>
         </div>

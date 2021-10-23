@@ -66,3 +66,7 @@ input.submit {
 input.submit:hover{
     color: #f3efef;
 }
+
+.beans img {
+    width: 55px;
+}
