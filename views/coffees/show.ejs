@@ -3,10 +3,10 @@
 <%- include ('../partials/head.ejs') %>
 
     <body>
-        <div class="container">
+        <div class="container show">
             <%- include ('../partials/nav.ejs') %>
                 <div class="row">
-                    <div class="show five columns">
+                    <div class="five columns">
 
                         <img src=" <%=coffee.img %>" alt="" />
 
@@ -22,23 +22,32 @@
                             </h3>
                         </div>
                         <h5>
-                            <%= coffee.roaster %>
+                            Roaster: <%= coffee.roaster %>
                         </h5>
+                        <div id="price-grade">
                         <p>
-                            Price: <% for( let index=0; index < coffee.price; index++ ) { %>$<% } %>
+                            <strong>Price</strong> <% for( let index=0; index < coffee.price; index++ ) { %>$<% } %>
                         </p>
                         <p>
-                            Grade: <%= coffee.grade %>
+                            <strong>Grade</strong> <%= coffee.grade %>
                         </p>
+                    </div>
                         <div class="beans">
-                            <img src="/images/coffee-bean.png" alt="">
+
+                            <figure><img src="/images/coffee-bean.png" alt="">
+                                <figcaption>Whole Bean</figcaption>
+                            </figure>
+                            <figure class="ghost">
                             <img src="/images/coffee-bag-bw.png" alt="">
+                            <figcaption>Ground</figcaption>
+                        </figure>
                         </div>
                         <p>Tried at <%= coffee.where%>
                                 <% if (coffee.address) { %>: <%=coffee.address%>
                                         <%}%>
                         </p>
-                        <ul>
+                        <strong> <p>Tags</p> </strong>
+                        <ul class="tags">
                             <% coffee.tags.forEach(tag=> { %>
                                 <li>
                                     <%= tag %>
@@ -46,9 +55,9 @@
                                 <% }) %>
                         </ul>
                         <p class="description">
-                            <%= coffee.description %>
+                            <strong>Notes: </strong><%= coffee.description %>
                         </p>
-                        <p><a href="/coffees/<%= coffee.id %>/edit">Edit</a></p>
+                        <p><a href="/coffees/<%= coffee.id %>/edit">Edit this entry</a></p>
                         <form class="submit" action="">
                             <input type="submit" value="DELETE">
                         </form>
