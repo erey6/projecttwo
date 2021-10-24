@@ -24,8 +24,14 @@
                                                 <p> <strong>Grade:</strong> <%= coffee.grade %>
                                                 </p>
                                             </div>
+                                            <div class="card-bottom">
                                                 <a href="/coffees/<%= coffee.id %> ">More</a>
+                                                <% if (coffee.favorite) { %>
+                                                    <p>  <i class="fas fa-heart"></i> </p>
+                                                     <% } %>
+                                                    </div>
                                             </div>
+                                          
 
                                             <% if (count%4===0 || count===coffees.length) { %>
                                     </div>
