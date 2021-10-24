@@ -152,5 +152,10 @@ input.submit:hover{
     font-size: 9.6rem;
     transform: scale(.5, 1);
     color: #00000087;
+}
 
+i {
+    color: #f47174;
+    font-size: 1.5rem;
+    margin-left: .6em;
 }

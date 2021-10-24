@@ -16,10 +16,9 @@
                         <div class="twelve columns">
                             <h3>
                                 <%= coffee.name %>
-                                    <% if (coffee.favorite) { %>
-                                        A favorite
-                                        <% } %>
+                                   
                             </h3>
+                            
                         </div>
                         <h5>
                             Roaster: <%= coffee.roaster %>
@@ -79,9 +78,12 @@
                             <strong>Notes: </strong>
                             <%= coffee.description %>
                         </p>
+                        <% if (coffee.favorite) { %>
+                            <p> Favorited <i class="fas fa-heart"></i> </p>
+                             <% } %>
                         <p><a href="/coffees/<%= coffee.id %>/edit">Edit this entry</a></p>
                         <form class="submit" action="/coffees/<%= coffee.id %>?_method=DELETE" method="POST">
-                            <input type="submit" value="DELETE">
+                            <input class="submit" type="submit" value="DELETE">
                         </form>
                     </div>
                 </div>
