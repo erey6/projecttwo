@@ -67,7 +67,7 @@ coffees.put('/:id', (req, res) => {
     //turns String of tags into array
     req.body.tags = req.body.tags.split(',')
     Coffee.findByIdAndUpdate(req.params.id, req.body, (err, updated) => {
-        res.redirect('/coffees')
+        res.redirect(`/coffees/${req.params.id}`)
     })
 })
 
