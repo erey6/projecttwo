@@ -35,7 +35,8 @@ coffees.get('/new', (req, res) => {
 coffees.get('/:id', (req, res) => {
     Coffee.find({}, (err1, allCoffees) => {
         Coffee.findById(req.params.id, (err, foundCoffee) => {
-            (foundCoffee.wholeBean === true) ? foundCoffee.bean = 'Whole bean' : foundCoffee.bean = 'Ground';
+            const gradeList = ['', 'F', 'D-','D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+']
+            foundCoffee.letterGrade = gradeList[foundCoffee.grade];
             (foundCoffee.home === true) ? foundCoffee.where = 'home' : foundCoffee.where = 'cafe';
             res.render('coffees/show.ejs', {
                 coffee: foundCoffee,
@@ -90,20 +91,25 @@ coffees.post('/', (req, res) => {
     })
 })
 
-
+//DELETE
+coffees.delete('/:id', (req, res) => {
+    Coffee.findByIdAndDelete(req.params.id, (err, data) => {
+        res.redirect('/coffees')
+    })
+})
 
 
 
 // Seed route
-// coffees.get('/seed', (req, res) => {
-//     Coffee.create(coffeeSeed, (error, seed) => {
-//         if (error) {
-//             console.log(error)
-//         } else {
-//             res.send('<a href="/coffees/home">seeded </a>')
-//         }
-//     })
-// })
+coffees.get('/seed/seed', (req, res) => {
+    Coffee.create(coffeeSeed, (error, seed) => {
+        if (error) {
+            console.log(error)
+        } else {
+            res.send('<a href="/coffees/home">seeded </a>')
+        }
+    })
+})
 
 
 

@@ -52,7 +52,7 @@ app.use('/coffees', coffeesController)
 //___________________
 //localhost:3000
 app.get('/' , (req, res) => {
-  res.send('Hello World! What to name the app?');
+  res.redirect('/coffees');
 });
 
 //___________________

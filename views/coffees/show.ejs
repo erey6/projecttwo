@@ -25,28 +25,49 @@
                             Roaster: <%= coffee.roaster %>
                         </h5>
                         <div id="price-grade">
-                        <p>
-                            <strong>Price</strong> <% for( let index=0; index < coffee.price; index++ ) { %>$<% } %>
-                        </p>
-                        <p>
-                            <strong>Grade</strong> <%= coffee.grade %>
-                        </p>
-                    </div>
+                            <div class="price">
+                                <div class="dollar-signs">
+                                <% for( let index=0; index < coffee.price; index++ ) { %><p class="green">$</p><% } %>
+                                <% for( let index=0; index < 4-coffee.price; index++ ) { %><p class=ghost>$</p><% } %>
+                            </div>
+                            <p class="price-label"><strong>Price</strong></p>
+                        </div>
+                            <div class="grade">
+                                <p><%= coffee.letterGrade %></p>
+                               <p> <strong>Grade</strong></p>
+                                
+                            </div>
+                        </div>
                         <div class="beans">
+                            <% if (coffee.wholeBean===true) { %>
+                                <figure>
+                                    <img src="/images/coffee-bean.png" alt="">
+                                    <figcaption>Whole Bean</figcaption>
+                                </figure>
+                                <figure class="ghost">
+                                    <img src="/images/coffee-bag-bw.png" alt="">
+                                    <figcaption>Ground</figcaption>
+                                </figure>
+                                <% } else { %>
+                                    <figure class="ghost">
+                                        <img src="/images/coffee-bean-bw.png" alt="">
+                                        <figcaption>Whole Bean</figcaption>
+                                    </figure>
 
-                            <figure><img src="/images/coffee-bean.png" alt="">
-                                <figcaption>Whole Bean</figcaption>
-                            </figure>
-                            <figure class="ghost">
-                            <img src="/images/coffee-bag-bw.png" alt="">
-                            <figcaption>Ground</figcaption>
-                        </figure>
+                                    <figure>
+                                        <img src="/images/coffee-bag.png" alt="">
+                                        <figcaption>Ground</figcaption>
+                                    </figure>
+                                    <%}%>
+
                         </div>
                         <p>Tried at <%= coffee.where%>
                                 <% if (coffee.address) { %>: <%=coffee.address%>
                                         <%}%>
                         </p>
-                        <strong> <p>Tags</p> </strong>
+                        <strong>
+                            <p>Tags</p>
+                        </strong>
                         <ul class="tags">
                             <% coffee.tags.forEach(tag=> { %>
                                 <li>
@@ -55,10 +76,11 @@
                                 <% }) %>
                         </ul>
                         <p class="description">
-                            <strong>Notes: </strong><%= coffee.description %>
+                            <strong>Notes: </strong>
+                            <%= coffee.description %>
                         </p>
                         <p><a href="/coffees/<%= coffee.id %>/edit">Edit this entry</a></p>
-                        <form class="submit" action="">
+                        <form class="submit" action="/coffees/<%= coffee.id %>?_method=DELETE" method="POST">
                             <input type="submit" value="DELETE">
                         </form>
                     </div>

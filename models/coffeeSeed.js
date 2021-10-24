@@ -9,7 +9,7 @@ module.exports = [
         favorite: false,
         price: 2,
         grade: 9,
-        img: 'https://images.app.goo.gl/pWmMiFnabzYuNh5v6'
+        img: 'https://i.imgur.com/83JVwi4.jpg'
     },
     {
         roaster: 'Elevated',
