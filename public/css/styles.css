@@ -38,24 +38,48 @@ nav ul {
     max-height: 99px;
 }
 
-.card {
-    border: 1px solid red;
+.pic-holder {
+    width: 100%;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
     margin-bottom: 1em;
 }
+
+.pic-holder:after {
+    content: '';
+    display: block;
+padding-bottom: 100%;
+}
+
+.card {
+     margin-bottom: 3em;
+     padding: 1.5rem;
+}
+
+.card h5 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-style: ;
+}
+
 .card img {
+   position: absolute;
     width: 100%;
+    /* height: 100%; */
 }
 
 .ghost {
     opacity: 0.3;
 }
 
-
-
-#price-grade {
+.price-grade {
     display: flex;
     gap: 18px;
-    
+}
+
+.card .price-grade p{
+    margin-bottom: .6rem;
 }
 /* #price-grade p{
     display: inline-block;
