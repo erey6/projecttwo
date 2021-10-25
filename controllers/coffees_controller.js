@@ -1,6 +1,7 @@
 const express = require('express')
 const coffees = express.Router()
 
+const gradeList = ['', 'F', 'D-', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+']
 
 //Schema
 const Coffee = require('../models/coffees.js')
@@ -18,6 +19,8 @@ coffees.get('/home', (req, res) => {
 })
 //INDEX
 coffees.get('/', (req, res) => {
+    //oldQuery passes original query to page for dropwdowns
+    const oldQuery = req.query;
     (req.query.favorite === 'on') ? req.query.favorite = true : null;
     (req.query.grade) ? req.query.grade = {$gte: req.query.grade} : null;
     Coffee.find(req.query, (err, allCoffees) => { 
@@ -27,7 +30,9 @@ coffees.get('/', (req, res) => {
             (req.query.favorite || req.query.price || req.query.grade) ? showFilter = false : showFilter = true;
             res.render('coffees/index.ejs', {
                 coffees: allCoffees,
-                filter: showFilter
+                filter: showFilter,
+                grades: gradeList,
+                query: oldQuery,
             })
         }
     })
@@ -44,7 +49,6 @@ coffees.get('/new', (req, res) => {
 coffees.get('/:id', (req, res) => {
     Coffee.find({}, (err1, allCoffees) => {
         Coffee.findById(req.params.id, (err, foundCoffee) => {
-            const gradeList = ['', 'F', 'D-', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+']
             foundCoffee.letterGrade = gradeList[foundCoffee.grade];
             (foundCoffee.home === true) ? foundCoffee.where = 'home' : foundCoffee.where = 'cafe';
             res.render('coffees/show.ejs', {

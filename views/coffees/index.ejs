@@ -3,95 +3,106 @@
 <%- include ('../partials/head.ejs') %>
 
     <body>
+        <%console.log(query.price) %> 
         <div class="container">
             <%- include ('../partials/nav.ejs') %>
                 <div class="row">
-                    <% if (filter===false) { %>
-                     <a href="/coffees">Return to full list</a>
-                    
-                    <% } else {%>
-                        
-                    <div class="filters columns ten">
-                        <form action="/coffees">
-                            <label class="filter-label"> Filters:  </label>
-                                <label class="filter-label">
-                                <input type="checkbox" name="favorite">
-                            </label>
-                                <span class="label-body">Favorites</span>
-                                <label class="filter-label">Price</label>
-                                <select name="price" class="filter-dropdown">
-                                    <option disabled selected value></option>
-                                    <option value="1">$</option>
-                                    <option value="2">$$</option>
-                                    <option value="3">$$$</option>
-                                    <option value="4">$$$$</option>
-                                </select>
-                            
-                            <label for="grade" class="filter-label">Min. grade</label>
-                            <select name="grade" class="filter-dropdown">
-                                <option disabled selected value></option>
-                                    <option value="13">A+</option>
-                                    <option value="12">A</option>
-                                    <option value="11">A-</option>
-                                    <option value="10">B+</option>
-                                    <option value="9">B</option>
-                                    <option value="8">B-</option>
-                                    <option value="7">C+</option>
-                                    <option value="6">C</option>
-                                    <option value="5">C-</option>
-                                    <option value="4">D+</option>
-                                    <option value="3">D</option>
-                                    <option value="2">D-</option>
-                                    <option value="1">F</option>
-                            </select>
-                            <div id="filter-submit-div">
-                            <input type="submit" value="Update" id="filter-submit">
-                        </div>
-                        </form>
-                      
-                    </div>
-                     
-                    <% } %>
+                    <% if (filter==="hello" ) { %>
+                        <a href="/coffees">Return to full list</a>
+
+                        <% } else {%>
+
+                            <div class="filters columns ten">
+                                <form action="/coffees">
+                                    <label class="filter-label"> FILTERS: </label>
+                                    <label class="filter-label">
+                                        <input type="checkbox" name="favorite">
+                                    </label>
+                                    <span class="label-body"><strong>Favorites</strong></span>
+                                    <label class="filter-label">Price</label>
+                                    <select name="price" class="filter-dropdown">
+                                        
+                                        <option disabled <% if (!query.price) { %>
+                                            selected
+                                            <% } %> >
+                                        </option>
+
+                                        <option value="1" <%if (query.price===1) {%> selected <% } %> >$
+                                        </option>
+                                        <option value="2" <%if (query.price==="2") {%> selected <% } %> >$$
+                                        </option>
+                                        <option value="3" <%if (query.price===3) {%> selected <% } %> >$$$
+                                        </option>
+                                        <option value="4" <%if (query.price===4) {%> selected <% } %> >$$$$
+                                        </option>
+                                    </select>
+                                    
+
+                                    <label for="grade" class="filter-label">Min. grade</label>
+                                    <select name="grade" class="filter-dropdown">
+                                        <option disabled selected value></option>
+                                        <option value="13">A+</option>
+                                        <option value="12">A</option>
+                                        <option value="11">A-</option>
+                                        <option value="10">B+</option>
+                                        <option value="9">B</option>
+                                        <option value="8">B-</option>
+                                        <option value="7">C+</option>
+                                        <option value="6">C</option>
+                                        <option value="5">C-</option>
+                                        <option value="4">D+</option>
+                                        <option value="3">D</option>
+                                        <option value="2">D-</option>
+                                        <option value="1">F</option>
+                                    </select>
+                                    <div id="filter-submit-div">
+                                        <input type="submit" value="Update" id="filter-submit">
+                                    </div>
+                                </form>
+
+                            </div>
+
+                            <% } %>
                 </div>
                 <div class="section">
-                    <% if (coffees.length ==0) { %>
-                     <h2>No Results</h2>
-                    <% } %>
-                    <% let count=0 %>
-                        <% coffees.forEach(coffee=> { %>
-                            <% count++ %>
-                                <% if ((count-1)%4===0 || count===1) { %>
-                                    <div class="row">
-                                        <% } %>
-                                            <div class="card three columns">
-                                                <div class="pic-holder"> <img src="<%= coffee.img %>" alt=""
-                                                        class="index-pic"></div>
+                    <% if (coffees.length==0) { %>
+                        <h2>No Results</h2>
+                        <% } %>
+                            <% let count=0 %>
+                                <% coffees.forEach(coffee=> { %>
+                                    <% count++ %>
+                                        <% if ((count-1)%4===0 || count===1) { %>
+                                            <div class="row">
+                                                <% } %>
+                                                    <div class="card three columns">
+                                                        <div class="pic-holder"> <img src="<%= coffee.img %>" alt=""
+                                                                class="index-pic"></div>
 
-                                                <h5>
-                                                    <%= coffee.name %>
-                                                </h5>
-                                                <div class="price-grade">
-                                                    <p><strong>Price:</strong>
-                                                        <% for( let index=0; index < coffee.price; index++ ) { %>$<% }
-                                                                %>
-                                                    </p>
-                                                    <p> <strong>Grade:</strong>
-                                                        <%= coffee.grade %>
-                                                    </p>
-                                                </div>
-                                                <div class="card-bottom">
-                                                    <a href="/coffees/<%= coffee.id %> ">More</a>
-                                                    <% if (coffee.favorite) { %>
-                                                        <p> <i class="fas fa-heart"></i> </p>
-                                                        <% } %>
-                                                </div>
+                                                        <h5>
+                                                            <%= coffee.name %>
+                                                        </h5>
+                                                        <div class="price-grade">
+                                                            <p><strong>Price:</strong>
+                                                                <% for( let index=0; index < coffee.price; index++ ) {
+                                                                    %>$<% } %>
+                                                            </p>
+                                                            <p> <strong>Grade:</strong>
+                                                                <%= grades[coffee.grade] %>
+                                                            </p>
+                                                        </div>
+                                                        <div class="card-bottom">
+                                                            <a href="/coffees/<%= coffee.id %> ">More</a>
+                                                            <% if (coffee.favorite) { %>
+                                                                <p> <i class="fas fa-heart"></i> </p>
+                                                                <% } %>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <% if (count%4===0 || count===coffees.length) { %>
                                             </div>
-
-
-                                            <% if (count%4===0 || count===coffees.length) { %>
-                                    </div>
-                                    <% } %>
-                                        <% }) %>
+                                            <% } %>
+                                                <% }) %>
                 </div>
         </div>
 
