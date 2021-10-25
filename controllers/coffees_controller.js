@@ -18,11 +18,18 @@ coffees.get('/home', (req, res) => {
 })
 //INDEX
 coffees.get('/', (req, res) => {
-    console.log(req.query)
     Coffee.find(req.query, (err, allCoffees) => {
-        res.render('coffees/index.ejs', {
-            coffees: allCoffees
-        })
+        if (err) {
+            console.log(err)
+        } else {
+            (allCoffees.length ===0) ? anyResults = false : anyResults = true;
+            (req.query.favorites  || req.query.price || req.query.grade) ? showFilter = false : showFilter = true ;
+            res.render('coffees/index.ejs', {
+                coffees: allCoffees,
+                results: anyResults,
+                filter: showFilter
+            })
+        }
     })
 
 })

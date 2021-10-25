@@ -6,6 +6,10 @@
         <div class="container">
             <%- include ('../partials/nav.ejs') %>
                 <div class="row">
+                    <% if (filter===false) { %>
+                     <a href="/coffees">Return to full list</a>
+                    <% } else {%>
+                        
                     <div class="filters columns ten">
                         <form action="/coffees">
                             <label class="filter-label"> Filters:  </label>
@@ -43,7 +47,10 @@
                             <input type="submit" value="Update" id="filter-submit">
                         </div>
                         </form>
+                      
                     </div>
+                     
+                    <% } %>
                 </div>
                 <div class="section">
                     <% let count=0 %>
