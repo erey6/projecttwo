@@ -18,13 +18,15 @@ coffees.get('/home', (req, res) => {
 })
 //INDEX
 coffees.get('/', (req, res) => {
-    Coffee.find({}, (err, allCoffees) => {
+    console.log(req.query)
+    Coffee.find(req.query, (err, allCoffees) => {
         res.render('coffees/index.ejs', {
             coffees: allCoffees
         })
     })
 
 })
+
 
 //NEW
 coffees.get('/new', (req, res) => {
@@ -35,7 +37,7 @@ coffees.get('/new', (req, res) => {
 coffees.get('/:id', (req, res) => {
     Coffee.find({}, (err1, allCoffees) => {
         Coffee.findById(req.params.id, (err, foundCoffee) => {
-            const gradeList = ['', 'F', 'D-','D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+']
+            const gradeList = ['', 'F', 'D-', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+']
             foundCoffee.letterGrade = gradeList[foundCoffee.grade];
             (foundCoffee.home === true) ? foundCoffee.where = 'home' : foundCoffee.where = 'cafe';
             res.render('coffees/show.ejs', {
@@ -86,7 +88,7 @@ coffees.post('/', (req, res) => {
         if (err) {
             res.send(error);
         } else {
-        res.redirect('/coffees')
+            res.redirect('/coffees')
         }
     })
 })

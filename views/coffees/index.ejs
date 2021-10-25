@@ -7,7 +7,7 @@
             <%- include ('../partials/nav.ejs') %>
                 <div class="row">
                     <div class="filters columns ten">
-                        <form action="">
+                        <form action="/coffees">
                             <label class="filter-label"> Filters:  </label>
                                 <label class="filter-label">
                                 <input type="checkbox" name="favorite">
@@ -15,7 +15,7 @@
                                 <span class="label-body">Favorites</span>
                                 <label class="filter-label">Price</label>
                                 <select name="price" class="filter-dropdown">
-                                    <option selected value></option>
+                                    <option disabled selected value></option>
                                     <option value="1">$</option>
                                     <option value="2">$$</option>
                                     <option value="3">$$$</option>
@@ -24,7 +24,7 @@
                             
                             <label for="grade" class="filter-label">Min. grade</label>
                             <select name="grade" class="filter-dropdown">
-                                <option value="0" selected></option>
+                                <option disabled selected value></option>
                                     <option value="13">A+</option>
                                     <option value="12">A</option>
                                     <option value="11">A-</option>
