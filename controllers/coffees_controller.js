@@ -22,11 +22,9 @@ coffees.get('/', (req, res) => {
         if (err) {
             console.log(err)
         } else {
-            (allCoffees.length ===0) ? anyResults = false : anyResults = true;
             (req.query.favorites  || req.query.price || req.query.grade) ? showFilter = false : showFilter = true ;
             res.render('coffees/index.ejs', {
                 coffees: allCoffees,
-                results: anyResults,
                 filter: showFilter
             })
         }

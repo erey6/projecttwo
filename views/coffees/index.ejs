@@ -8,6 +8,7 @@
                 <div class="row">
                     <% if (filter===false) { %>
                      <a href="/coffees">Return to full list</a>
+                    
                     <% } else {%>
                         
                     <div class="filters columns ten">
@@ -53,6 +54,9 @@
                     <% } %>
                 </div>
                 <div class="section">
+                    <% if (coffees.length ==0) { %>
+                     <h2>No Results</h2>
+                    <% } %>
                     <% let count=0 %>
                         <% coffees.forEach(coffee=> { %>
                             <% count++ %>
