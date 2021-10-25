@@ -18,11 +18,13 @@ coffees.get('/home', (req, res) => {
 })
 //INDEX
 coffees.get('/', (req, res) => {
-    Coffee.find(req.query, (err, allCoffees) => {
+    (req.query.favorite === 'on') ? req.query.favorite = true : null;
+    (req.query.grade) ? req.query.grade = {$gte: req.query.grade} : null;
+    Coffee.find(req.query, (err, allCoffees) => { 
         if (err) {
             console.log(err)
         } else {
-            (req.query.favorites  || req.query.price || req.query.grade) ? showFilter = false : showFilter = true ;
+            (req.query.favorite || req.query.price || req.query.grade) ? showFilter = false : showFilter = true;
             res.render('coffees/index.ejs', {
                 coffees: allCoffees,
                 filter: showFilter
