@@ -19,8 +19,11 @@ coffees.get('/home', (req, res) => {
 })
 //INDEX
 coffees.get('/', (req, res) => {
-    //oldQuery passes original query to page for dropwdowns
-    const oldQuery = req.query;
+    //grade stores numbef before $gte conversion --NOTE: nums will be strings
+    const grade = req.query.grade;
+    //for filtering on index.ejs, if price is empty, it removes from query
+    (req.query.price === '') ? delete req.query.price : null;
+    (req.query.grade === '') ? delete req.query.grade : null;
     (req.query.favorite === 'on') ? req.query.favorite = true : null;
     (req.query.grade) ? req.query.grade = {$gte: req.query.grade} : null;
     Coffee.find(req.query, (err, allCoffees) => { 
@@ -32,7 +35,8 @@ coffees.get('/', (req, res) => {
                 coffees: allCoffees,
                 filter: showFilter,
                 grades: gradeList,
-                query: oldQuery,
+                query: req.query,
+                grade: grade,
             })
         }
     })
