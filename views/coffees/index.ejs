@@ -5,6 +5,46 @@
     <body>
         <div class="container">
             <%- include ('../partials/nav.ejs') %>
+                <div class="row">
+                    <div class="filters columns ten">
+                        <form action="">
+                            <label class="filter-label"> Filters:  </label>
+                                <label class="filter-label">
+                                <input type="checkbox" name="favorite">
+                            </label>
+                                <span class="label-body">Favorites</span>
+                                <label class="filter-label">Price</label>
+                                <select name="price" class="filter-dropdown">
+                                    <option selected value></option>
+                                    <option value="1">$</option>
+                                    <option value="2">$$</option>
+                                    <option value="3">$$$</option>
+                                    <option value="4">$$$$</option>
+                                </select>
+                            
+                            <label for="grade" class="filter-label">Min. grade</label>
+                            <select name="grade" class="filter-dropdown">
+                                <option value="0" selected></option>
+                                    <option value="13">A+</option>
+                                    <option value="12">A</option>
+                                    <option value="11">A-</option>
+                                    <option value="10">B+</option>
+                                    <option value="9">B</option>
+                                    <option value="8">B-</option>
+                                    <option value="7">C+</option>
+                                    <option value="6">C</option>
+                                    <option value="5">C-</option>
+                                    <option value="4">D+</option>
+                                    <option value="3">D</option>
+                                    <option value="2">D-</option>
+                                    <option value="1">F</option>
+                            </select>
+                            <div id="filter-submit-div">
+                            <input type="submit" value="Update" id="filter-submit">
+                        </div>
+                        </form>
+                    </div>
+                </div>
                 <div class="section">
                     <% let count=0 %>
                         <% coffees.forEach(coffee=> { %>
@@ -43,6 +83,7 @@
                                         <% }) %>
                 </div>
         </div>
+
     </body>
 
 </html>

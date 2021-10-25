@@ -72,6 +72,33 @@ a:hover{
     max-height: 99px;
 }
 
+.filter-label {
+    display: inline;
+    margin-left: 1em;
+   
+}
+
+.filter-dropdown {
+    height: 21px;
+    padding: 0; 
+ 
+    
+}
+
+#filter-submit {
+    height: 21px;
+    position: absolute;
+    top: .9px;
+    line-height: 12px;
+
+}
+
+#filter-submit-div{
+    display: inline;
+    margin-left: 1.5em;
+    position: relative;
+}
+
 .pic-holder {
     width: 100%;
     position: relative;
@@ -93,11 +120,10 @@ a:hover{
     transition: .3s ease-in-out;
 }
 
-
-
 .card:hover {
     box-shadow: 0px 2px 6px #00000060;
     padding: 1.2rem;
+    margin-bottom: 2.4em;
 }
 
 .card h5 {
@@ -170,12 +196,12 @@ textarea#description {
     font-family: sans-serif;
 }
 
-input.submit {
+input[type="submit"] {
     color: #ffffff;
     background-color: #000000;
 }
 
-input.submit:hover {
+input[type="submit"]:hover {
     color: #f3efef;
 }
 
