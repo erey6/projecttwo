@@ -20,6 +20,10 @@ nav h3 span {
     display: inline-block;
 }
 
+nav>a:hover {
+    text-decoration: none;
+}
+
 nav {
     margin-top: 2em;
     margin-bottom: 2em;
