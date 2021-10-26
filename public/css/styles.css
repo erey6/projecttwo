@@ -136,10 +136,11 @@ a:hover{
     margin-bottom: 3em;
     padding: 1.5rem;
     position: relative;
-    transition: .3s ease-in-out;
+    transition: .2s ease-in-out;
 }
 
 .card:hover {
+    transform: translateZ(0);
     box-shadow: 0px 2px 6px #00000060;
     padding: 1.2rem;
     margin-bottom: 2.4em;

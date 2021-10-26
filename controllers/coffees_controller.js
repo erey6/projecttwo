@@ -106,13 +106,20 @@ coffees.post('/', (req, res) => {
     req.body.grade = parseInt(req.body.grade)
     //turns String of tags into array
     req.body.tags = req.body.tags.split(',')
-    Coffee.create(req.body, (err, addedCoffee) => {
-        if (err) {
-            res.send(error);
-        } else {
-            res.redirect('/coffees')
-        }
+    User.findById (req.session.currentUser, (err, foundUser) => {
+        Coffee.create(req.body, (err, addedCoffee) => {
+            if (err) {
+                res.send(error);
+            } else {
+                foundUser.coffees.push(addedCoffee);
+                foundUser.save((err, data) => {
+                    res.send(data)
+                })
+                
+            }
+        })
     })
+    
 })
 
 //DELETE

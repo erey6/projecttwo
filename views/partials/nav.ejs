@@ -1,10 +1,10 @@
 <nav>
    <a href="/"> <h3>JOE <span> Java of everyone</span></h3></a>
     <ul>
-        <li><a href="/coffees/new">Add a coffee</a></li>
         <li><a href="/coffees">Index of coffees</a></li>
     
         <% if (currentUser) { %>
+            <li><a href="/coffees/new">Add a coffee</a></li>
          <li>Hello, <%=currentUser.username %>  </li>
          <li><form action="/sessions?_method=DELETE" method="post">
             <input type="submit" value="Log Out" >
