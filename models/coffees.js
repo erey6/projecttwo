@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// const User = require('../models/users.js')
 const Schema = mongoose.Schema;
 
 const coffeeSchema = new Schema({
@@ -13,6 +14,7 @@ const coffeeSchema = new Schema({
     price: { type: Number, min: 1, max: 4 },
     grade: { type: Number, min: 0, max: 13 },
     img: String,
+  
 });
 
 

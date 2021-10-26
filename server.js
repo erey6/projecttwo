@@ -45,8 +45,9 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 
 //Controllers
 const coffeesController = require('./controllers/coffees_controller.js')
+const userController = require('./controllers/users_controller.js')
 app.use('/coffees', coffeesController)
-
+app.use('/users', userController)
 //___________________
 // Routes
 //___________________
@@ -58,4 +59,4 @@ app.get('/' , (req, res) => {
 //___________________
 //Listener
 //___________________
-app.listen(PORT, () => console.log( 'Listening on port:', PORT));
+app.listen(PORT, () => console.log( 'Smelling coffee and istening on port:', PORT));

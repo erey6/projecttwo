@@ -4,6 +4,7 @@ const coffees = express.Router()
 const gradeList = ['', 'F', 'D-', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+']
 
 //Schema
+const User = require('../models/users.js')
 const Coffee = require('../models/coffees.js')
 const coffeeSeed = require('../models/coffeeSeed.js')
 

@@ -75,13 +75,15 @@ a:hover{
 .filter-label {
     display: inline;
     margin-left: 1em;
-   
+}
+
+.filter-label:first-child{
+    margin-left: 0;
 }
 
 .filter-dropdown {
     height: 21px;
     padding: 0; 
- 
     
 }
 
@@ -90,7 +92,6 @@ a:hover{
     position: absolute;
     top: .9px;
     line-height: 12px;
-
 }
 
 #filter-submit-div{
@@ -98,6 +99,13 @@ a:hover{
     margin-left: 1.5em;
     position: relative;
 }
+
+.reset {
+    display: inline;
+    clear: both;
+   
+}
+
 
 .pic-holder {
     width: 100%;
