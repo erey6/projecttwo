@@ -1,5 +1,13 @@
 const express = require('express')
 const coffees = express.Router()
+const isAuthenticated = (req, res, next) => {
+    if (req.session.currentUser) {
+      return next()
+    } else {
+      res.redirect('/sessions/new')
+    }
+  }
+
 
 const gradeList = ['', 'F', 'D-', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+']
 
@@ -47,6 +55,8 @@ coffees.get('/', (req, res) => {
 })
 
 
+
+
 //NEW
 coffees.get('/new', (req, res) => {
     res.render('coffees/new.ejs', {
@@ -70,7 +80,7 @@ coffees.get('/:id', (req, res) => {
 })
 
 //EDIT
-coffees.get('/:id/edit', (req, res) => {
+coffees.get('/:id/edit', isAuthenticated, (req, res) => {
     Coffee.findById(req.params.id, (err, foundCoffee) => {
         res.render('coffees/edit.ejs', {
             currentUser: req.session.currentUser,
@@ -96,7 +106,7 @@ coffees.put('/:id', (req, res) => {
 })
 
 //CREATE
-coffees.post('/', (req, res) => {
+coffees.post('/', isAuthenticated, (req, res) => {
     //assigns true or false for the two radio button params and checkbox
     (req.body.home === 'home') ? req.body.home = true : req.body.home = false;
     (req.body.wholeBean === 'wholeBean') ? req.body.wholeBean = true : req.body.wholeBean = false;
@@ -123,9 +133,16 @@ coffees.post('/', (req, res) => {
 })
 
 //DELETE
-coffees.delete('/:id', (req, res) => {
+coffees.delete('/:id', isAuthenticated, (req, res) => {
     Coffee.findByIdAndDelete(req.params.id, (err, data) => {
-        res.redirect('/coffees')
+        User.findOne({'coffees._id': req.params.id}, (err, foundUser) => {
+            foundUser.coffees.id(req.params.id).remove();
+            foundUser.save((err, data) => {
+                console.log('updated user', data)
+                res.redirect('/coffees')
+            })
+        })
+        
     })
 })
 
