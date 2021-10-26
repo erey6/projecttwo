@@ -3,6 +3,17 @@
     <ul>
         <li><a href="/coffees/new">Add a coffee</a></li>
         <li><a href="/coffees">Index of coffees</a></li>
-        <li> <a href="/users/new">Sign up here</a></li>
+    
+        <% if (currentUser) { %>
+         <li>Hello, <%=currentUser.username %>  </li>
+         <li><form action="/sessions?_method=DELETE" method="post">
+            <input type="submit" value="Log Out" >
+          </form></li>
+        <% } else { %>
+        <li> <a href="/users/new">Sign up</a></li>
+        <li> <a href="/sessions/new">Log in</a></li>
+        <% } %>
+
+        
     </ul>
 </nav>

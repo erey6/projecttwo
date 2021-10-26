@@ -13,7 +13,8 @@ const coffeeSeed = require('../models/coffeeSeed.js')
 coffees.get('/home', (req, res) => {
     Coffee.find({}, (err, allCoffees) => {
         res.render('coffees/home.ejs', {
-            coffees: allCoffees
+            coffees: allCoffees,
+            currentUser: req.session.currentUser
         })
     })
 
@@ -33,6 +34,7 @@ coffees.get('/', (req, res) => {
         } else {
             (req.query.favorite || req.query.price || req.query.grade) ? showFilter = false : showFilter = true;
             res.render('coffees/index.ejs', {
+                currentUser: req.session.currentUser,
                 coffees: allCoffees,
                 filter: showFilter,
                 grades: gradeList,
@@ -47,7 +49,9 @@ coffees.get('/', (req, res) => {
 
 //NEW
 coffees.get('/new', (req, res) => {
-    res.render('coffees/new.ejs')
+    res.render('coffees/new.ejs', {
+        currentUser: req.session.currentUser
+    })
 })
 
 //SHOW
@@ -57,6 +61,7 @@ coffees.get('/:id', (req, res) => {
             foundCoffee.letterGrade = gradeList[foundCoffee.grade];
             (foundCoffee.home === true) ? foundCoffee.where = 'home' : foundCoffee.where = 'cafe';
             res.render('coffees/show.ejs', {
+                currentUser: req.session.currentUser,
                 coffee: foundCoffee,
                 coffees: allCoffees
             })
@@ -68,6 +73,7 @@ coffees.get('/:id', (req, res) => {
 coffees.get('/:id/edit', (req, res) => {
     Coffee.findById(req.params.id, (err, foundCoffee) => {
         res.render('coffees/edit.ejs', {
+            currentUser: req.session.currentUser,
             coffee: foundCoffee
         })
     })

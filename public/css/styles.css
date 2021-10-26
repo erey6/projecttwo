@@ -6,6 +6,7 @@
 body {
     font-family: 'Source Sans Pro', sans-serif;
 }
+
 nav h3{
     font-family: 'Bree Serif', serif;
     padding: 0 1em .2em 1em;
@@ -39,8 +40,19 @@ nav ul {
     list-style-type: none;
 }
 
+nav form {
+    margin-bottom: 0;
+}
+
 nav li {
     margin: 0 1em;
+}
+
+nav input[type="submit"] {
+    color: #000000;
+    background-color: #ffffff;
+    height: 21px;
+    line-height: 0px;
 }
 
 a{
@@ -206,10 +218,11 @@ textarea#description {
 input[type="submit"] {
     color: #ffffff;
     background-color: #000000;
+    margin:0 0; 
 }
 
 input[type="submit"]:hover {
-    color: #f3efef;
+    color: #bdb7b7;
 }
 
 .beans {

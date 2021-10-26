@@ -22,7 +22,7 @@ sessions.post('/', (req, res) => {
                 console.log(foundUser)
                 res.redirect('/')
             } else {
-                res.send('<a href="/">Password does not match</a>') 
+                res.send('<a href="/sessions/new">Password does not match</a>') 
             }
         }
     })

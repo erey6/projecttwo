@@ -6,13 +6,9 @@
         <div class="container">
             
                 <%- include ('../partials/nav.ejs') %>
-                <h2>Sign up for JOE</h2>
-                <form action="/users" method="post">
+                <h2>Log in to your JOE account</h2>
+                <form action="/sessions" method="post">
                     <div class="row">
-                    <div class="four columns">
-                        <label for="Name">Name</label>
-                        <input type="text" name="name" class="u-full-width" id="">
-                    </div>
                     <div class="four columns">
                         <label for="username">User name</label>
                         <input type="text" name="username" class="u-full-width" id="">
