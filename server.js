@@ -4,6 +4,7 @@
 const express = require('express');
 const methodOverride  = require('method-override');
 const mongoose = require ('mongoose');
+const session = require('express-session')
 const app = express ();
 const db = mongoose.connection;
 require('dotenv').config()
@@ -32,6 +33,14 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 //___________________
 //Middleware
 //___________________
+//sessions middleware
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false
+  })
+)
 
 //use public folder for static assets
 app.use(express.static('public'));
@@ -46,8 +55,10 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 //Controllers
 const coffeesController = require('./controllers/coffees_controller.js')
 const userController = require('./controllers/users_controller.js')
+const sessionsController = require('./controllers/sessions_controller.js')
 app.use('/coffees', coffeesController)
 app.use('/users', userController)
+app.use('/sessions', sessionsController)
 //___________________
 // Routes
 //___________________

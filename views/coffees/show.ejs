@@ -16,9 +16,9 @@
                         <div class="twelve columns">
                             <h3>
                                 <%= coffee.name %>
-                                   
+
                             </h3>
-                            
+
                         </div>
                         <h5>
                             Roaster: <%= coffee.roaster %>
@@ -26,15 +26,21 @@
                         <div class="price-grade">
                             <div class="price">
                                 <div class="dollar-signs">
-                                <% for( let index=0; index < coffee.price; index++ ) { %><p class="green">$</p><% } %>
-                                <% for( let index=0; index < 4-coffee.price; index++ ) { %><p class=ghost>$</p><% } %>
+                                    <% for( let index=0; index < coffee.price; index++ ) { %>
+                                        <p class="green">$</p>
+                                        <% } %>
+                                            <% for( let index=0; index < 4-coffee.price; index++ ) { %>
+                                                <p class=ghost>$</p>
+                                                <% } %>
+                                </div>
+                                <p class="price-label"><strong>Price</strong></p>
                             </div>
-                            <p class="price-label"><strong>Price</strong></p>
-                        </div>
                             <div class="grade">
-                                <p><%= coffee.letterGrade %></p>
-                               <p> <strong>Grade</strong></p>
-                                
+                                <p>
+                                    <%= coffee.letterGrade %>
+                                </p>
+                                <p> <strong>Grade</strong></p>
+
                             </div>
                         </div>
                         <div class="beans">
@@ -80,11 +86,11 @@
                         </p>
                         <% if (coffee.favorite) { %>
                             <p> Favorited <i class="fas fa-heart"></i> </p>
-                             <% } %>
-                        <p><a href="/coffees/<%= coffee.id %>/edit">Edit this entry</a></p>
-                        <form class="submit" action="/coffees/<%= coffee.id %>?_method=DELETE" method="POST">
-                            <input class="submit" type="submit" value="DELETE">
-                        </form>
+                            <% } %>
+                                <p><a href="/coffees/<%= coffee.id %>/edit">Edit this entry</a></p>
+                                <form class="submit" action="/coffees/<%= coffee.id %>?_method=DELETE" method="POST">
+                                    <input class="submit" type="submit" value="DELETE">
+                                </form>
                     </div>
                 </div>
         </div>
