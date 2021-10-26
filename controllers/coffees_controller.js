@@ -42,8 +42,38 @@ coffees.get('/', (req, res) => {
         } else {
             (req.query.favorite || req.query.price || req.query.grade) ? showFilter = false : showFilter = true;
             res.render('coffees/index.ejs', {
+                userPage: false,
                 currentUser: req.session.currentUser,
                 coffees: allCoffees,
+                filter: showFilter,
+                grades: gradeList,
+                query: req.query,
+                grade: grade,
+            })
+        }
+    })
+
+})
+
+//only USER COFFEES
+//INDEX
+coffees.get('/usercoffees', isAuthenticated, (req, res) => {
+    //grade stores numbef before $gte conversion --NOTE: nums will be strings
+    const grade = req.query.grade;
+    //for filtering on index.ejs, if price is empty, it removes from query
+    (req.query.price === '') ? delete req.query.price : null;
+    (req.query.grade === '') ? delete req.query.grade : null;
+    (req.query.favorite === 'on') ? req.query.favorite = true : null;
+    (req.query.grade) ? req.query.grade = {$gte: req.query.grade} : null;
+    User.findById(req.session.currentUser._id, (err, userData) => { 
+        if (err) {
+            console.log(err)
+        } else {
+            (req.query.favorite || req.query.price || req.query.grade) ? showFilter = false : showFilter = true;
+            res.render('coffees/index.ejs', {
+                userPage: true,
+                currentUser: req.session.currentUser,
+                coffees: userData.coffees,
                 filter: showFilter,
                 grades: gradeList,
                 query: req.query,
@@ -101,7 +131,13 @@ coffees.put('/:id', (req, res) => {
     //turns String of tags into array
     req.body.tags = req.body.tags.split(',')
     Coffee.findByIdAndUpdate(req.params.id, req.body, (err, updated) => {
-        res.redirect(`/coffees/${req.params.id}`)
+        User.findOne({'coffees._id': req.params.id}, (err, foundUser) => {
+            foundUser.coffees.id(req.params.id).remove();
+            foundUser.coffees.push(req.body);
+            foundUser.save((err, data) => {
+            res.redirect(`/coffees/${req.params.id}`)
+            })
+        })
     })
 })
 
