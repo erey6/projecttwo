@@ -87,10 +87,16 @@
                         <% if (coffee.favorite) { %>
                             <p> Favorited <i class="fas fa-heart"></i> </p>
                             <% } %>
+                            <% if (currentUser && canEdit) { %>
+                             
+                           
                                 <p><a href="/coffees/<%= coffee.id %>/edit">Edit this entry</a></p>
                                 <form class="submit" action="/coffees/<%= coffee.id %>?_method=DELETE" method="POST">
                                     <input class="submit" type="submit" value="DELETE">
                                 </form>
+                                <% } else {%>
+                                    <p>Your entry? <a href="/sessions/new">Log in to edit  </a></p>
+                                    <%}%>
                     </div>
                 </div>
         </div>

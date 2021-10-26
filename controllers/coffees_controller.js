@@ -2,11 +2,11 @@ const express = require('express')
 const coffees = express.Router()
 const isAuthenticated = (req, res, next) => {
     if (req.session.currentUser) {
-      return next()
+        return next()
     } else {
-      res.redirect('/sessions/new')
+        res.redirect('/sessions/new')
     }
-  }
+}
 
 
 const gradeList = ['', 'F', 'D-', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+']
@@ -35,8 +35,8 @@ coffees.get('/', (req, res) => {
     (req.query.price === '') ? delete req.query.price : null;
     (req.query.grade === '') ? delete req.query.grade : null;
     (req.query.favorite === 'on') ? req.query.favorite = true : null;
-    (req.query.grade) ? req.query.grade = {$gte: req.query.grade} : null;
-    Coffee.find(req.query, (err, allCoffees) => { 
+    (req.query.grade) ? req.query.grade = { $gte: req.query.grade } : null;
+    Coffee.find(req.query, (err, allCoffees) => {
         if (err) {
             console.log(err)
         } else {
@@ -64,12 +64,11 @@ coffees.get('/usercoffees', isAuthenticated, (req, res) => {
     (req.query.price === '') ? delete req.query.price : null;
     (req.query.grade === '') ? delete req.query.grade : null;
     (req.query.favorite === 'on') ? req.query.favorite = true : null;
-    (req.query.grade) ? req.query.grade = {$gte: req.query.grade} : null;
-    User.findById(req.session.currentUser._id, (err, userData) => { 
+    (req.query.grade) ? req.query.grade = { $gte: req.query.grade } : null;
+    User.findById(req.session.currentUser._id, (err, userData) => {
         if (err) {
             console.log(err)
         } else {
-            (req.query.favorite || req.query.price || req.query.grade) ? showFilter = false : showFilter = true;
             res.render('coffees/index.ejs', {
                 userPage: true,
                 currentUser: req.session.currentUser,
@@ -96,16 +95,14 @@ coffees.get('/new', (req, res) => {
 
 //SHOW
 coffees.get('/:id', (req, res) => {
-    Coffee.find({}, (err1, allCoffees) => {
-        Coffee.findById(req.params.id, (err, foundCoffee) => {
-            console.log('found here', foundCoffee)
-            foundCoffee.letterGrade = gradeList[foundCoffee.grade];
-            (foundCoffee.home === true) ? foundCoffee.where = 'home' : foundCoffee.where = 'cafe';
-            res.render('coffees/show.ejs', {
-                currentUser: req.session.currentUser,
-                coffee: foundCoffee,
-                coffees: allCoffees
-            })
+    Coffee.findById(req.params.id, (err, foundCoffee) => {
+        console.log('found here', foundCoffee)
+        foundCoffee.letterGrade = gradeList[foundCoffee.grade];
+        (foundCoffee.home === true) ? foundCoffee.where = 'home' : foundCoffee.where = 'cafe';
+        res.render('coffees/show.ejs', {
+            currentUser: req.session.currentUser,
+            coffee: foundCoffee,
+
         })
     })
 })
@@ -113,9 +110,14 @@ coffees.get('/:id', (req, res) => {
 //EDIT
 coffees.get('/:id/edit', isAuthenticated, (req, res) => {
     Coffee.findById(req.params.id, (err, foundCoffee) => {
-        res.render('coffees/edit.ejs', {
-            currentUser: req.session.currentUser,
-            coffee: foundCoffee
+        User.findOne({ 'coffees._id': req.params.id }, (err, foundUser) => {
+           if (foundUser.id===req.session.currentUser._id) {
+            res.render('coffees/edit.ejs', {
+                currentUser: req.session.currentUser,
+                coffee: foundCoffee,
+                canEdit: true
+            })
+        }
         })
     })
 })
@@ -131,12 +133,12 @@ coffees.put('/:id', (req, res) => {
     req.body.grade = parseInt(req.body.grade)
     //turns String of tags into array
     req.body.tags = req.body.tags.split(',')
-    Coffee.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updated) => {
-        User.findOne({'coffees._id': req.params.id}, (err, foundUser) => {
+    Coffee.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updated) => {
+        User.findOne({ 'coffees._id': req.params.id }, (err, foundUser) => {
             foundUser.coffees.id(req.params.id).remove();
             foundUser.coffees.push(updated);
             foundUser.save((err, data) => {
-            res.redirect(`/coffees/${req.params.id}`)
+                res.redirect(`/coffees/${req.params.id}`)
             })
         })
     })
@@ -153,7 +155,7 @@ coffees.post('/', isAuthenticated, (req, res) => {
     req.body.grade = parseInt(req.body.grade)
     //turns String of tags into array
     req.body.tags = req.body.tags.split(',')
-    User.findById (req.session.currentUser, (err, foundUser) => {
+    User.findById(req.session.currentUser, (err, foundUser) => {
         Coffee.create(req.body, (err, addedCoffee) => {
             if (err) {
                 res.send(error);
@@ -162,24 +164,24 @@ coffees.post('/', isAuthenticated, (req, res) => {
                 foundUser.save((err, data) => {
                     res.send(data)
                 })
-                
+
             }
         })
     })
-    
+
 })
 
 //DELETE
 coffees.delete('/:id', isAuthenticated, (req, res) => {
     Coffee.findByIdAndDelete(req.params.id, (err, data) => {
-        User.findOne({'coffees._id': req.params.id}, (err, foundUser) => {
+        User.findOne({ 'coffees._id': req.params.id }, (err, foundUser) => {
             foundUser.coffees.id(req.params.id).remove();
             foundUser.save((err, data) => {
                 console.log('updated user', data)
                 res.redirect('/coffees')
             })
         })
-        
+
     })
 })
 
