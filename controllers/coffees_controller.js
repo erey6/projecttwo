@@ -98,6 +98,7 @@ coffees.get('/new', (req, res) => {
 coffees.get('/:id', (req, res) => {
     Coffee.find({}, (err1, allCoffees) => {
         Coffee.findById(req.params.id, (err, foundCoffee) => {
+            console.log('found here', foundCoffee)
             foundCoffee.letterGrade = gradeList[foundCoffee.grade];
             (foundCoffee.home === true) ? foundCoffee.where = 'home' : foundCoffee.where = 'cafe';
             res.render('coffees/show.ejs', {
@@ -130,10 +131,10 @@ coffees.put('/:id', (req, res) => {
     req.body.grade = parseInt(req.body.grade)
     //turns String of tags into array
     req.body.tags = req.body.tags.split(',')
-    Coffee.findByIdAndUpdate(req.params.id, req.body, (err, updated) => {
+    Coffee.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updated) => {
         User.findOne({'coffees._id': req.params.id}, (err, foundUser) => {
             foundUser.coffees.id(req.params.id).remove();
-            foundUser.coffees.push(req.body);
+            foundUser.coffees.push(updated);
             foundUser.save((err, data) => {
             res.redirect(`/coffees/${req.params.id}`)
             })
