@@ -16,6 +16,9 @@ For the user coffees, a query is made for the user's schema which holds an array
 For the full coffee index, a search is made for all coffees in the coffee collection.
 One thought on how the filter could work on the user page is to apply the filter to all coffees and then if the coffee is in the user's array, return that.
 
+## Future functionality
+I'd like to make the new/edit pages more graphical for the whole bean/ground selection.
+I'd also like to create proper "user must be logged in" pages.
 
 ## User stories
 
@@ -40,3 +43,6 @@ These were the user stories I wrote at the outset:
 * User can mark entries as favorite
 
 * A user should be able to edit their entry.
+
+## Additional technology
+As seen in the footer. The site uses icons from 
