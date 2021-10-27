@@ -15,7 +15,7 @@ const coffeeSchema = new Schema({
     grade: { type: Number, min: 0, max: 13 },
     img: String,
   
-});
+}, {timestamps: true});
 
 
 const Coffee = mongoose.model('Coffee', coffeeSchema);

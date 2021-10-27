@@ -43,7 +43,7 @@ coffees.get('/', (req, res) => {
             res.render('coffees/index.ejs', {
                 userPage: false,
                 currentUser: req.session.currentUser,
-                coffees: allCoffees,
+                coffees: allCoffees.reverse(),
                 grades: gradeList,
                 query: req.query,
                 grade: grade,
@@ -63,7 +63,7 @@ coffees.get('/usercoffees', isAuthenticated, (req, res) => {
             res.render('coffees/index.ejs', {
                 userPage: true,
                 currentUser: req.session.currentUser,
-                coffees: userData.coffees,
+                coffees: userData.coffees.reverse(),
                 grades: gradeList,
             })
         }
