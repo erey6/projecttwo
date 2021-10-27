@@ -56,13 +56,6 @@ coffees.get('/', (req, res) => {
 //only USER COFFEES
 //INDEX
 coffees.get('/usercoffees', isAuthenticated, (req, res) => {
-    //grade stores numbef before $gte conversion --NOTE: nums will be strings
-    const grade = req.query.grade;
-    //for filtering on index.ejs, if price is empty, it removes from query
-    (req.query.price === '') ? delete req.query.price : null;
-    (req.query.grade === '') ? delete req.query.grade : null;
-    (req.query.favorite === 'on') ? req.query.favorite = true : null;
-    (req.query.grade) ? req.query.grade = { $gte: req.query.grade } : null;
     User.findById(req.session.currentUser._id, (err, userData) => {
         if (err) {
             console.log(err)
@@ -72,15 +65,11 @@ coffees.get('/usercoffees', isAuthenticated, (req, res) => {
                 currentUser: req.session.currentUser,
                 coffees: userData.coffees,
                 grades: gradeList,
-                query: req.query,
-                grade: grade,
             })
         }
     })
 
 })
-
-
 
 
 //NEW
