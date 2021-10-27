@@ -40,12 +40,10 @@ coffees.get('/', (req, res) => {
         if (err) {
             console.log(err)
         } else {
-            (req.query.favorite || req.query.price || req.query.grade) ? showFilter = false : showFilter = true;
             res.render('coffees/index.ejs', {
                 userPage: false,
                 currentUser: req.session.currentUser,
                 coffees: allCoffees,
-                filter: showFilter,
                 grades: gradeList,
                 query: req.query,
                 grade: grade,
@@ -73,7 +71,6 @@ coffees.get('/usercoffees', isAuthenticated, (req, res) => {
                 userPage: true,
                 currentUser: req.session.currentUser,
                 coffees: userData.coffees,
-                filter: showFilter,
                 grades: gradeList,
                 query: req.query,
                 grade: grade,
@@ -111,13 +108,18 @@ coffees.get('/:id', (req, res) => {
 coffees.get('/:id/edit', isAuthenticated, (req, res) => {
     Coffee.findById(req.params.id, (err, foundCoffee) => {
         User.findOne({ 'coffees._id': req.params.id }, (err, foundUser) => {
-           if (foundUser.id===req.session.currentUser._id) {
+            let editor
+           if (foundUser.id===req.session.currentUser._id) 
+           {
+               editor = true 
+            } else {
+                editor = false
+            };
             res.render('coffees/edit.ejs', {
                 currentUser: req.session.currentUser,
                 coffee: foundCoffee,
-                canEdit: true
+                canEdit: editor
             })
-        }
         })
     })
 })
@@ -162,7 +164,7 @@ coffees.post('/', isAuthenticated, (req, res) => {
             } else {
                 foundUser.coffees.push(addedCoffee);
                 foundUser.save((err, data) => {
-                    res.send(data)
+                    res.redirect('/coffees/usercoffees')
                 })
 
             }
