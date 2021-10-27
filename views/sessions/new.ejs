@@ -4,26 +4,26 @@
 
     <body>
         <div class="container">
-            
-                <%- include ('../partials/nav.ejs') %>
+
+            <%- include ('../partials/nav.ejs') %>
                 <h2>Log in to your JOE account</h2>
                 <form action="/sessions" method="post">
                     <div class="row">
-                    <div class="four columns">
-                        <label for="username">User name</label>
-                        <input type="text" name="username" class="u-full-width" id="">
+                        <div class="four columns">
+                            <label for="username">User name</label>
+                            <input type="text" name="username" class="u-full-width" id="">
+                        </div>
                     </div>
-                </div>
                     <div class="class row">
                         <div class="four columns">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" class="u-full-width" id="">
-                        <input type="submit" value="submit">
-                    </div>
+                            <label for="password">Password</label>
+                            <input type="password" name="password" class="u-full-width" id="">
+                            <input type="submit" value="submit">
+                        </div>
                     </div>
                 </form>
                 <%- include ('../partials/footer.ejs') %>
-            </div>
+        </div>
     </body>
 
 </html>
