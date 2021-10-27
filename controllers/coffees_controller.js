@@ -21,8 +21,9 @@ const coffeeSeed = require('../models/coffeeSeed.js')
 coffees.get('/home', (req, res) => {
     Coffee.find({}, (err, allCoffees) => {
         res.render('coffees/home.ejs', {
-            coffees: allCoffees,
-            currentUser: req.session.currentUser
+            coffees: allCoffees.reverse(),
+            currentUser: req.session.currentUser,
+            grades: gradeList
         })
     })
 

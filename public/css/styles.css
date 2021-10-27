@@ -66,6 +66,10 @@ a:hover{
 
 }
 
+.featured {
+    border-right: .3px solid #000000;
+}
+
 .featured h3 {
     color: rgb(235, 122, 122);
     font-weight: bold;
@@ -299,4 +303,8 @@ i {
 
 footer {
     padding-top: 3em;
+}
+
+.small-card h6{
+    margin-bottom: .1em;
 }

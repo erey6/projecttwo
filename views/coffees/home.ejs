@@ -11,37 +11,44 @@
                             <h3>Featured Coffee <span>
                                     <%= coffees[0].name %>
                                 </span> </h3>
-                            <img src=" <%=coffees[1].img %>" alt="" />
+                            <img src=" <%=coffees[0].img %>" alt="" />
                             <h5>
                                 <%= coffees[0].roaster %>
                             </h5>
-                            <p>
-                                <% for( let index=0; index < coffees[0].price; index++ ) { %>
-                                    $
-                                    <% } %>
-                            </p>
-                            <p>
-                                <%= coffees[0].grade %>
-                            </p>
-                            <ul>
+                            <div class="price-grade">
+                                <p><strong>Price:</strong>
+                                    <% for( let index=0; index < coffees[0].price; index++ ) { %>
+                                        $
+                                        <% } %>
+                                </p>
+                                <p>
+                                    <strong>Grade: </strong>
+                                    <%= grades[coffees[0].grade] %>
+                                </p>
+                            </div>
+                            <ul class="tags">
                                 <% coffees[0].tags.forEach(tag=> { %>
                                     <li>
                                         <%= tag %>
                                     </li>
                                     <% }) %>
                             </ul>
+                            <p><a href="/coffees/<%= coffees[0].id %>">More</a></p>
                         </div>
                         <div class="sider four columns">
 
                             <h4>More coffees</h4>
                             <div class="small-card">
-                                <% for( let index=1; index <coffees.length ; index++ ) { %>
+                                <% for( let index=1; index < 5 ; index++ ) { %>
                                     <img src="<%= coffees[index].img %> " alt="">
-                                    <h5>
-                                        <%= coffees[index].name %>
-                                    </h5>
+                                    <h6>
+                                        <a href="/coffees/<%= coffees[index].id %>">
+                                            <%= coffees[index].name %>
+                                        </a>
+                                    </h6>
                                     <p>
-                                        <%= coffees[index].grade %>
+                                        <strong>Grade: </strong>
+                                        <%= grades[coffees[index].grade] %>
                                     </p>
                                     <% } %>
                             </div>

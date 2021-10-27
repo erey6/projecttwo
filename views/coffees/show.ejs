@@ -88,8 +88,6 @@
                             <p> Favorited <i class="fas fa-heart"></i> </p>
                             <% } %>
                             <% if (currentUser) { %>
-                             
-                           
                                 <p><a href="/coffees/<%= coffee.id %>/edit">Edit this entry</a></p>
                                 <form class="submit" action="/coffees/<%= coffee.id %>?_method=DELETE" method="POST">
                                     <input class="submit" type="submit" value="DELETE">
