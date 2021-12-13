@@ -19,6 +19,7 @@ One thought on how the filter could work on the user page is to apply the filter
 ## Future functionality
 I'd like to make the new/edit pages more graphical for the whole bean/ground selection.
 I'd also like to create proper "user must be logged in" pages.
+If user doesn't upload a photo, there should be a placeholder photo.
 
 ## User stories
 
