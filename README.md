@@ -7,7 +7,7 @@ The "java of everyone" app is deployed on Heroku and built using Mongoose, Expre
 
 The app was designed for users to keep track of coffees they have tried -- either store bought or at the cafe -- and share them. 
 
-Any one can view the web site. Only logged-in users can add to the site. Entries can only be edited by the creator. 
+Any one can view the website. Only logged-in users can add to the site. Entries can be edited only by the creator. 
 
 ## Unsolved
 When seeing the index of all coffees, anyone can filter by favorites, price and rating(grade). However this is not available when a user looks at their list of coffees. This is due to the how the info is retrieved from the database.
