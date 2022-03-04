@@ -46,4 +46,4 @@ These were the user stories I wrote at the outset:
 * A user should be able to edit their entry.
 
 ## Additional technology
-As seen in the footer. The site uses icons from 
+As seen in the footer. The site uses icons from flaticon

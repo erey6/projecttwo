@@ -32,6 +32,7 @@ coffees.get('/home', (req, res) => {
 coffees.get('/', (req, res) => {
     //grade stores numbef before $gte conversion --NOTE: nums will be strings
     const grade = req.query.grade;
+    
     //for filtering on index.ejs, if price is empty, it removes from query
     (req.query.price === '') ? delete req.query.price : null;
     (req.query.grade === '') ? delete req.query.grade : null;
@@ -39,6 +40,7 @@ coffees.get('/', (req, res) => {
     (req.query.grade) ? req.query.grade = { $gte: req.query.grade } : null;
     Coffee.find(req.query, (err, allCoffees) => {
         // console.log(allCoffees)
+        console.log('here', allCoffees)
         if (err) {
             console.log(err)
         } else {
@@ -59,7 +61,7 @@ coffees.get('/', (req, res) => {
 //INDEX
 coffees.get('/usercoffees', isAuthenticated, (req, res) => {
     User.findById(req.session.currentUser._id, (err, userData) => {
-        // console.log(userData)
+        console.log('apple')
         if (err) {
             console.log(err)
         } else {
