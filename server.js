@@ -70,4 +70,4 @@ app.get('/' , (req, res) => {
 //___________________
 //Listener
 //___________________
-app.listen(PORT, () => console.log( 'Smelling coffee and istening on port:', PORT));
+app.listen(PORT, () => console.log( 'Smelling coffee and listening on port:', PORT));
